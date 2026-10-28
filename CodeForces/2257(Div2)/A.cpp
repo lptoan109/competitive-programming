@@ -34,8 +34,9 @@ void FILENAME(const string file){
 }
 
 int m, n;
-map<char, int> cnt;
+char cnt[256];
 void solve(){
+    memset(cnt, 0, sizeof(cnt));
     cin >> n >> m;
     REP(i, n){
         string t;
@@ -45,15 +46,14 @@ void solve(){
     REP(i, m){
         string t;
         cin >> t;
-        FOR(j, 0, t.size()-1){
-            if(cnt[char((int)t[j]+32)]<=0){
+        int nt = t.size();
+        FOR(j, 0, nt-1){
+            if(cnt[char(t[j]+32)]<=0){
                 cout << "NO" << "\n";
-                cnt.clear();
                 return;
             }
         }
     }
-    cnt.clear();
     cout << "YES" << "\n";
 }
 int t;
@@ -62,7 +62,9 @@ signed main(){
     cin.tie(0);
     //FILENAME("");
     cin >> t;
-    while(t--) solve();
+    while(t--){
+        solve();
+    }
     return 0;
 }
 
